@@ -48,13 +48,11 @@ def webhook():
     return "ok"
 
 # Ruta principal para probar si está vivo
-@app.route("/webhook", methods=["POST"])
-def webhook():
-    update = Update.de_json(request.get_json(force=True), bot)
-    application.update_queue.put_nowait(update)
-    return "ok"
-
+@app.route("/")
+def home():
+    return "Bot funcionando en Render!"
 
 # Ejecutar servidor
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
