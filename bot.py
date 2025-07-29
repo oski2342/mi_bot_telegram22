@@ -34,7 +34,7 @@ application = Application.builder().token(TOKEN).build()
 application.add_handler(CommandHandler("start", start))
 application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, responder))
 
-@app.route(f"/{TOKEN}", methods=["POST"])
+@app.route("/webhook", methods=["POST"])
 def webhook():
     update = Update.de_json(request.get_json(force=True), bot)
     application.update_queue.put_nowait(update)
